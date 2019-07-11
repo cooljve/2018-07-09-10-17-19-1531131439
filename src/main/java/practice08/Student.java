@@ -14,7 +14,7 @@ public class Student extends Person {
   }
 
   public String introduce() {
-    Person person = new Person(1, "Tom", 21);
+    Person person = new Person(getId(), getName(), getAge());
     String str = person.introduce() + " I am a Student. I am ";
     if (klass.getLeader() != null && klass.getLeader().getName() == person.getName()) {
       str += "Leader of ";

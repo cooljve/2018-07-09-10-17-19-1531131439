@@ -3,7 +3,7 @@ package practice10;
 import java.util.LinkedList;
 
 public class Teacher extends Person {
-  Person person = new Person(1, "Tom", 21);
+  Person person = new Person(getId(), getName(), getAge());
   private LinkedList<Klass> classes = new LinkedList<>();
 
   public Teacher(int id, String name, int age, LinkedList<Klass> classes) {

@@ -2,7 +2,7 @@ package practice08;
 
 public class Teacher extends Person {
   private Klass klass;
-  Person person = new Person(1,"Tom", 21);
+  Person person = new Person(getId(),getName(), getAge());
 
   public Klass getKlass() {
     return klass;
