@@ -1,27 +1,25 @@
 package practice11;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Teacher extends Person {
-  private LinkedList<Klass> classes = new LinkedList<>();
-  Person person = new Person(getId(), getName(), getAge());
+  private List<Klass> classes = new LinkedList<>();
 
   public Teacher(int id, String name, int age, LinkedList<Klass> classes) {
     super(id, name, age);
     this.classes = classes;
-
+    for (Klass klass : this.classes) {
+      klass.getTeacherList().add(this);
+    }
   }
 
   public Teacher(int id, String name, int age) {
     super(id, name, age);
   }
 
-  public LinkedList<Klass> getClasses() {
-    return classes;
-  }
-
   public String introduce() {
-    String str = person.introduce() + " I am a Teacher. I teach ";
+    String str = super.introduce() + " I am a Teacher. I teach ";
     if (classes.size() == 0) {
       str += "No Class.";
     } else {
@@ -36,7 +34,7 @@ public class Teacher extends Person {
   }
 
   public String introduceWith(Student student) {
-    String str = person.introduce() + " I am a Teacher. I";
+    String str = super.introduce() + " I am a Teacher. I";
     str += isTeaching(student) ? " teach " : " don't teach ";
     str += student.getName() + ".";
     return str;
@@ -54,19 +52,19 @@ public class Teacher extends Person {
   public void printInform(String type,Student student){
     switch (type) {
       case "newLeader":{
-        System.out.print("I am "+person.getName()+". I know "
-            +student.getName()+" become Leader of Class "+student.getKlass().getNumber());
+        System.out.print(String.format("I am %s. I know %s become Leader of Class %d.\n",this.getName(),student.getName(),student.getKlass().getNumber()));
         break;
       }
       case "newMember":{
-        System.out.print("I am "+person.getName()+". I know "
-            +student.getName()+" has joined Class "+student.getKlass().getNumber());
+        System.out.print(String.format("I am %s. I know %s has joined Class %d.\n",this.getName(),student.getName(),student.getKlass().getNumber()));
         break;
       }
     }
-    System.out.println("123");
   }
 
+  public List<Klass> getClasses() {
+    return classes;
+  }
 }
 
 
